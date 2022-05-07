@@ -33,10 +33,9 @@ jobs:
       - name: Run a multi-line script
         shell: bash
         run: |
-          dir
-          echo Java version
-          java -version
           echo ---
           echo "${{github.workspace}}" >> $GITHUB_PATH
           echo ---
-          echo "$GITHUB_PATH"
+          echo "$PATH"
+          mv release-test/windows/* .
+          dir
