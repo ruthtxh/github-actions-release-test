@@ -35,6 +35,6 @@ jobs:
           echo ---
           echo "${{github.workspace}}" >> $env:GITHUB_PATH
           echo ---
-          echo "$PATH"
+          echo $env:path
           move release-test/windows/* .
           dir
