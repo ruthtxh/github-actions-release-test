@@ -36,5 +36,6 @@ jobs:
           dir
           echo Java version
           java -version
-          echo "D:\a\github-actions-release-test\github-actions-release-test" >> $GITHUB_PATH
+          echo "${{github.workspace}}" >> $GITHUB_PATH
+          # echo "D:\a\github-actions-release-test\github-actions-release-test" >> $GITHUB_PATH
           echo "$PATH"
