@@ -36,6 +36,13 @@ jobs:
           dir
           echo Java version
           java -version
+          echo Current Directory Path is:
+          echo %cd%
+          echo ---
+          echo "$PATH"
+          echo ---
           echo "${{github.workspace}}/github-actions-release-test/github-actions-release-test" >> $GITHUB_PATH
-          # echo "D:\a\github-actions-release-test\github-actions-release-test" >> $GITHUB_PATH
+          echo ---
+          echo "$PATH"
+          echo "D:\a\github-actions-release-test\github-actions-release-test" >> $GITHUB_PATH
           echo "$PATH"
