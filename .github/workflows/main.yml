@@ -38,5 +38,4 @@ jobs:
           dir
           echo Java version
           java -version
-          set PATH=D:\a\github-actions-release-test\github-actions-release-test;%PATH%
-          SET | Path
+          echo "{path}" >> $GITHUB_PATH
