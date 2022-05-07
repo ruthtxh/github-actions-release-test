@@ -39,5 +39,4 @@ jobs:
           echo Java version
           java -version
           echo "D:\a\github-actions-release-test\github-actions-release-test" >> $GITHUB_PATH
-          echo $PATH
-          gci env:path
+          echo "$PATH"
