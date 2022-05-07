@@ -41,8 +41,8 @@ jobs:
           echo ---
           echo "$PATH"
           echo ---
-          echo "${{github.workspace}}/github-actions-release-test/github-actions-release-test" >> $GITHUB_PATH
+          echo "${{github.workspace}}" >> $GITHUB_PATH
           echo ---
           echo "$PATH"
-          echo "D:\a\github-actions-release-test\github-actions-release-test" >> $GITHUB_PATH
+          echo "D:/a/github-actions-release-test/github-actions-release-test" >> $GITHUB_PATH
           echo "$PATH"
