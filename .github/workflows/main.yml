@@ -9,7 +9,6 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
       - name: Add Unx, PHP, CasperJS and SlimerJS dependency files (Windows)
-        if: (matrix.os == 'windows-latest')
         run: |
           
           cd "${{github.workspace}}\src"
@@ -26,7 +25,7 @@ jobs:
         if: startsWith(github.ref, 'refs/tags/')
         with:
           files: |
-            ${{github.workspace}}\src\unx\curl
+            ${{github.workspace}}\src\unx\*
  
 
 # jobs:
