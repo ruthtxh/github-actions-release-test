@@ -1,62 +1,31 @@
-
-name: Create Release
+name: Release
 
 on:
   push:
     tags:
-      - 'v*'
-
+      -"v*"
 jobs:
   create_release:
-    name: Create Release
-    runs-on: ubuntu-latest
-#     steps:
-#       - name: Create Release
-#         id: create_release
-#         uses: softprops/action-gh-release@v1
-#         with:
-#           name: ${{ github.ref_name }}
-#           draft: false
-#           prerelease: false
-#           generate_release_notes: false
+    name: "Release"
+    runs on: "ubuntu-latest"
     steps:
-      - uses: "marvinpinto/action-automatic-releases@latest"
+      - uses: "softprops/action-gh-release@v1"
         with:
           repo_token: "${{ secrets.GITHUB_TOKEN }}"
           prerelease: false
-
-  build_release:
-    name: Build Release
-    needs: create_release
-    strategy:
-      matrix:
-        os: [ubuntu-latest, macos-latest, windows-latest]
-        include:
-          - os: ubuntu-latest
-            release_suffix: ubuntu
-          - os: macos-latest
-            release_suffix: mac
-          - os: windows-latest
-            release_suffix: windows
-    runs-on: ${{ matrix.os }}
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-
-      - name: Run Linux Build
-        if: matrix.os == 'ubuntu-latest'
-        run: echo "Ubuntu Latest" > release_ubuntu
-      
-      - name: Run Mac Build
-        if: matrix.os == 'macos-latest'
-        run: echo "MacOS Latest" > release_mac
-
-      - name: Run Windows Build
-        if: matrix.os == 'windows-latest'
-        run: echo "Windows Latest" > release_windows
-
-      - name: Release
-        uses: softprops/action-gh-release@v1
-        with:
-          tag_name: ${{ needs.create_release.outputs.tag-name }}
-          files: release_${{ matrix.release_suffix }}
+          with:
+          files: |
+            ${{github.workspace}}
+            
+      - name: Add Unx, PHP, CasperJS and SlimerJS dependency files (Windows)
+        if: (matrix.os == 'windows-latest')
+        run: |
+          
+          cd "${{github.workspace}}\src"
+          
+          # Add unx dependencies
+          Invoke-WebRequest -Uri 'https://storage.googleapis.com/tagui-dependencies/unx.zip' -OutFile unxzip.zip
+          Expand-Archive -LiteralPath unxzip.zip
+          MOVE-ITEM -Path  "${{github.workspace}}\src\unxzip.zip\*" -Destination "${{github.workspace}}\src"
+          Remove-Item unxzip.zip
+          ls
