@@ -17,7 +17,7 @@ jobs:
           # Add unx dependencies
           Invoke-WebRequest -Uri 'https://storage.googleapis.com/tagui-dependencies/unx.zip' -OutFile unxzip.zip
           Expand-Archive -LiteralPath unxzip.zip
-          MOVE-ITEM -Path  "${{github.workspace}}\src\unxzip.zip\*" -Destination "${{github.workspace}}\src"
+          MOVE-ITEM -Path  "${{github.workspace}}\src\unx\*" -Destination "${{github.workspace}}\src"
           Remove-Item unxzip.zip
           ls
       - name: Release
