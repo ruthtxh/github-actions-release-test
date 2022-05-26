@@ -19,13 +19,14 @@ jobs:
           Expand-Archive -LiteralPath unxzip.zip
           MOVE-ITEM -Path  "${{github.workspace}}\src\unxzip.zip\*" -Destination "${{github.workspace}}\src"
           Remove-Item unxzip.zip
+          cd "${{github.workspace}}\src\unx"
           ls
       - name: Release
         uses: softprops/action-gh-release@v1
         if: startsWith(github.ref, 'refs/tags/')
         with:
           files: |
-            ${{github.workspace}}\src\unx\*
+            ${{github.workspace}}\src\unx\curl
  
 
 # jobs:
