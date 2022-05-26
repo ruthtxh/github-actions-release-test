@@ -10,15 +10,14 @@ jobs:
         uses: actions/checkout@v2
       - name: Add Unx, PHP, CasperJS and SlimerJS dependency files (Windows)
         run: |
-          
           cd "${{github.workspace}}"
-          
+          Get-Location
           # Add unx dependencies
           Invoke-WebRequest -Uri 'https://storage.googleapis.com/tagui-dependencies/unx.zip' -OutFile unxzip.zip
           Expand-Archive -LiteralPath unxzip.zip
-          MOVE-ITEM -Path  "${{github.workspace}}\unxzip.zip\*" -Destination "${{github.workspace}}"
+          MOVE-ITEM -Path  "${{github.workspace}}\unxzip.zip\*" -Destination "${{github.workspace}}\unx"
           Remove-Item unxzip.zip
-          cd "${{github.workspace}}\unx"
+          ls
           ls
       - name: Release
         uses: softprops/action-gh-release@v1
