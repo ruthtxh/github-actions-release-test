@@ -35,7 +35,15 @@ jobs:
           echo "${{github.workspace}}" >> $env:GITHUB_PATH
           move release-test/windows/* .
           dir
-          
+  check_path:
+    # The type of runner that the job will run on (windows-latest: Windows Server 2022)
+    runs-on: windows-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v3
+
       # Runs a single command using the runners shell
       - name: Run a one-line script
         run: echo $env:path
