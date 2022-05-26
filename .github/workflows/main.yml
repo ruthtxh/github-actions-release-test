@@ -11,7 +11,6 @@ jobs:
       - name: Add Unx, PHP, CasperJS and SlimerJS dependency files (Windows)
         run: |
           cd "${{github.workspace}}"
-          Get-Location
           # Add unx dependencies
           Invoke-WebRequest -Uri 'https://storage.googleapis.com/tagui-dependencies/unx.zip' -OutFile unxzip.zip
           Expand-Archive -LiteralPath unxzip.zip
@@ -24,7 +23,7 @@ jobs:
         if: startsWith(github.ref, 'refs/tags/')
         with:
           files: |
-            ${{github.workspace}}\unx\*
+            ${{github.workspace}}\unx\curl
  
 
 # jobs:
