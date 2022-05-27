@@ -20,7 +20,7 @@ jobs:
           
       - uses: papeloto/action-zip@v1
         with:
-          files: "${{github.workspace}}/*"
+          files: *
           dest: result.zip
           
       - name: Release
