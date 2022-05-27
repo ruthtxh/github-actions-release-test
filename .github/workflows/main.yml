@@ -16,95 +16,11 @@ jobs:
           Expand-Archive -LiteralPath unxzip.zip
           MOVE-ITEM -Path  "${{github.workspace}}\unxzip\*" -Destination "${{github.workspace}}"
           Remove-Item unxzip.zip
-          cd "${{github.workspace}}\unxzip"
-          ls
+          Remove-Item unxzip
+          
       - name: Release
         uses: softprops/action-gh-release@v1
         if: startsWith(github.ref, 'refs/tags/')
         with:
           files: |
-            ${{github.workspace}}\unxzip\*
- 
-
-# jobs:
-#   create_release:
-#     runs on: "ubuntu-latest"
-#     steps:
-#       - name: Checkout
-#         uses: actions/checkout@v2
-#       - name: Add Unx, PHP, CasperJS and SlimerJS dependency files (Windows)
-#         if: (matrix.os == 'windows-latest')
-#         run: |
-          
-#           cd "${{github.workspace}}\src"
-          
-#           # Add unx dependencies
-#           Invoke-WebRequest -Uri 'https://storage.googleapis.com/tagui-dependencies/unx.zip' -OutFile unxzip.zip
-#           Expand-Archive -LiteralPath unxzip.zip
-#           MOVE-ITEM -Path  "${{github.workspace}}\src\unxzip.zip\*" -Destination "${{github.workspace}}\src"
-#           Remove-Item unxzip.zip
-#           ls
-
-#       - name: Release
-#         uses: "softprops/action-gh-release@v1"
-#         if: startsWith(github.ref, 'refs/tags/')
-#         with:
-#           prerelease: false
-#           files: |
-#             *
-
-
-
-
-# # This is a basic workflow to help you get started with Actions
-
-# name: CI
-
-# # Controls when the workflow will run
-# on:
-#   # Triggers the workflow on push or pull request events but only for the main branch
-#   push:
-#     branches: [ main ]
-#   pull_request:
-#     branches: [ main ]
-
-#   # Allows you to run this workflow manually from the Actions tab
-#   workflow_dispatch:
-
-# # A workflow run is made up of one or more jobs that can run sequentially or in parallel
-# jobs:
-#   # This workflow contains a single job called "build"
-#   build:
-#     # The type of runner that the job will run on (windows-latest: Windows Server 2022)
-#     runs-on: windows-latest
-
-#     # Steps represent a sequence of tasks that will be executed as part of the job
-#     steps:
-#       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-#       - uses: actions/checkout@v3
-
-#       # Runs a single command using the runners shell
-#       - name: Run a one-line script
-#         run: echo Hello, world!
-
-#       # Runs a set of commands using the runners shell
-#       - name: Run a multi-line script
-#         run: |
-#           echo "${{github.workspace}}" >> $env:GITHUB_PATH
-#           move release-test/windows/* .
-#           dir
-#   check_path:
-#     # The type of runner that the job will run on (windows-latest: Windows Server 2022)
-#     runs-on: windows-latest
-
-#     # Steps represent a sequence of tasks that will be executed as part of the job
-#     steps:
-#       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-#       - uses: actions/checkout@v3
-
-#       # Runs a single command using the runners shell
-#       - name: Run a one-line script
-#         run: echo $env:path
-
-
-
+            ${{github.workspace}}\unx
