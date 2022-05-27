@@ -20,7 +20,8 @@ jobs:
           
       - uses: papeloto/action-zip@v1
         with:
-          files: /*
+          files: release-test/ unx/ testfile.txt
+          recursive: false
           dest: result.zip
           
       - name: Release
