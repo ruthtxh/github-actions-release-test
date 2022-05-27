@@ -18,10 +18,14 @@ jobs:
           Remove-Item unxzip.zip
           Remove-Item unxzip
           
+      - uses: papeloto/action-zip@v1
+        with:
+          files: "${{github.workspace}}/*"
+          dest: result.zip
+          
       - name: Release
         uses: softprops/action-gh-release@v1
         if: startsWith(github.ref, 'refs/tags/')
         with:
           files: |
-            unx\curl
-            unx\*
+            result.zip
